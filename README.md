@@ -1,43 +1,40 @@
-# RaceDay API - Part 2
+# RaceDay - Part 3 (MVC Web Application)
 
-**Student Name: Siyabonga Msimango  
+**Student Name: Siyabonga Msimango
 **Student Number: ST10488360
-**Module: PROG6212  
-**Project: RaceDay - Event Management System (Part 2: RESTful API Development)
+**Module:** PROG6212
+**Project:** RaceDay - Event Management System
 
 ##  Project Overview
-RaceDay is a full-stack web-based event management system designed for the South African road running, walking, and cycling community. 
+This repository contains the final part of the RaceDay project. It includes a fully functional, containerized ASP.NET Core MVC Web Application that consumes the RaceDay RESTful API (built in Part 2). 
 
-This repository contains **Part 2** of the project: the RESTful API backend. It is built using **ASP.NET Core Web API** in C# and connects to a **SQL Server** database using **Entity Framework Core** (Code-First approach). The API handles all data operations, enforces role-based access (Organiser and Participant), and is fully documented using Swagger.
+The application supports two distinct user roles (Organiser and Participant) with session-based authentication. It integrates with **Azure SQL Database** for data persistence and **Azure Blob Storage** for cloud-based image uploads. The entire application is containerized using Docker.
 
 ##  Technologies Used
-*   Language: C#
-*   Framework: ASP.NET Core Web API (.NET 8.0)
-*   Database: SQL Server (LocalDB)
-*   ORM: Entity Framework Core (Code-First)
-*   Authentication: Session-based management & Password Hashing (SHA256)
-*   Documentation: Swagger UI
-*   Testing:** xUnit
+*   **Frontend:** ASP.NET Core MVC (.NET 8.0), Razor Views, Bootstrap 5
+*   **Backend API:** ASP.NET Core Web API (.NET 8.0)
+*   **Database:** Microsoft Azure SQL Database (Entity Framework Core)
+*   **Cloud Storage:** Microsoft Azure Blob Storage
+*   **Containerization:** Docker & Docker Compose
+*   **CI/CD:** GitHub Actions
 
 ##  Key Features
-*   Role-Based Access Control:** Distinct permissions for `Organiser` and `Participant` roles enforced at the API level.
-*   Authentication:** Secure user registration and login using hashed passwords and session management.
-*   Event Management:** Organisers can create, update, and delete events and categories.
-*   Enrollments:** Participants can browse events and enroll in specific categories.
-*   Results:** Organisers can capture finish times and positions; Participants can view their own results.
-*   Profile Management:** Both roles can view and update their own profile information.
-*   Swagger Integration:** All endpoints are fully visible, documented, and testable directly from the browser.
+*   **Role-Based Navigation:** Distinct interfaces for Organisers and Participants.
+*   **Session Management:** Secure login using API tokens stored in session cookies.
+*   **Organiser Dashboard:** Create events, manage categories, and upload event banner images.
+*   **Participant Interface:** Browse events, view details, and enroll in specific race categories.
+*   **Cloud Integration:** All images are uploaded securely through the API to Azure Blob Storage.
+*   **Dockerized Architecture:** Both the API and Web App run in isolated containers.
 
 ##  Getting Started
 
-# Prerequisites
-Before you begin, ensure you have the following installed:
-*   [Visual Studio 2022](https://visualstudio.microsoft.com/) (with ASP.NET and web development workload)
-*   [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-*   SQL Server Express LocalDB (usually installed with Visual Studio)
+### Prerequisites
+*   [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+*   Active Azure subscription (for SQL and Blob Storage).
 
-# Installation & Setup
+### Installation & Setup
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Siyabonga95-lab/RaceDay_API.git# RaceDay_API# RaceDay_API
+   git clone [Your GitHub Repo Link]
+   cd RaceDay_API
