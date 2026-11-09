@@ -33,6 +33,18 @@ namespace RaceDay_API.Data
             modelBuilder.Entity<Organiser>().HasIndex(o => o.OrganiserPhone).IsUnique();
             modelBuilder.Entity<Result>().HasIndex(r => r.EnrollmentID).IsUnique();
 
+            // Fix for "Multiple Cascade Paths" error
+            modelBuilder.Entity<EventEnrollment>()
+                .HasOne(e => e.Event)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Fix for Participant Cascade Loop
+            modelBuilder.Entity<EventEnrollment>()
+                .HasOne(e => e.Participant)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
             // Check constraints (using ToTable with check constraints is complex; we enforce in code too)
             base.OnModelCreating(modelBuilder);
         }

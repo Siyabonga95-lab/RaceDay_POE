@@ -12,7 +12,7 @@ using RaceDay_API.Data;
 namespace RaceDay_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261015050211_InitialCreate")]
+    [Migration("20261109160729_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -292,13 +292,13 @@ namespace RaceDay_API.Migrations
                     b.HasOne("RaceDay_API.Models.Event", "Event")
                         .WithMany()
                         .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("RaceDay_API.Models.Participant", "Participant")
                         .WithMany()
                         .HasForeignKey("ParticipantID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");
