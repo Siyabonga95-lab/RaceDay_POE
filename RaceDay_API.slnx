@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
     <File Path="docker-compose.yml" />
   </Folder>
   <Project Path="RaceDay.Web/RaceDay.Web.csproj" Id="c9d9ddef-b259-42cf-94b8-554da2c1a1e1" />
