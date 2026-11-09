@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  raceday_api:
+    image: raceday_api
+    build:
+      context: .
+      dockerfile: RaceDay_API/Dockerfile
+    ports:
+      - "7092:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=tcp:racedayserver-siyabonga.database.windows.net,1433;Initial Catalog=RaceDayDB;Persist Security Info=False;User ID=racedayadmin;Password=Siyabonga@1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      - ConnectionStrings__AzureBlobStorage=DefaultEndpointsProtocol=https;AccountName=racedaystoragesiyabonga;AccountKey=GW/9iPOwGpohMfKVj+wQ4SkRN4AxrukR3ibMMYtt5uQ41zDzuQec6YAazZ0WYW7i/p6vBDDeC8Ya+ASt3oCZYg==;EndpointSuffix=core.windows.net
+
+  raceday_web:
+    image: raceday_web
+    build:
+      context: .
+      dockerfile: RaceDay.Web/Dockerfile
+    ports:
+      - "7239:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ApiSettings__BaseUrl=http://raceday_api:8080/
+    depends_on:
+      - raceday_api
