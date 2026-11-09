@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Create Event";
+}
+<div class="container mt-4">
+    <h2>Create New Event</h2>
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3"><label>Event Name</label><input type="text" name="eventName" class="form-control" required /></div>
+        <div class="mb-3"><label>Description</label><textarea name="eventDescription" class="form-control" required></textarea></div>
+        <div class="mb-3"><label>Date</label><input type="date" name="eventDate" class="form-control" required /></div>
+        <div class="mb-3"><label>Location</label><input type="text" name="eventLocation" class="form-control" required /></div>
+        <div class="mb-3"><label>Distance</label><input type="text" name="eventDistance" class="form-control" placeholder="e.g. 10KM" required /></div>
+        <div class="mb-3">
+            <label>Type</label>
+            <select name="eventType" class="form-select">
+                <option value="Running">Running</option>
+                <option value="Walking">Walking</option>
+                <option value="Cycling">Cycling</option>
+            </select>
+        </div>
+        <div class="mb-3"><label>Route Start Point</label><input type="text" name="routeStartPoint" class="form-control" /></div>
+        <div class="mb-3"><label>Route End Point</label><input type="text" name="routeEndPoint" class="form-control" /></div>
+        <div class="mb-3"><label>Upload Banner Image</label><input type="file" name="eventImage" class="form-control" accept="image/*" /></div>
+        <button type="submit" class="btn btn-danger w-100">Create Event</button>
+    </form>
+</div>

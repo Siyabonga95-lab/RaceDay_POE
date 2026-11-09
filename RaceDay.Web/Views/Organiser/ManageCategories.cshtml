@@ -1,0 +1,23 @@
+﻿@model System.Text.Json.JsonElement
+@{
+    ViewData["Title"] = "Manage Categories"; var eventId = ViewBag.EventId;
+}
+<h2>Categories for Event</h2>
+<ul class="list-group mb-3">
+    @foreach (var item in Model.EnumerateArray())
+    {
+        <li class="list-group-item">Age: @item.GetProperty("categoryAge") - Distance: @item.GetProperty("categoryDistance")</li>
+    }
+</ul>
+<form asp-action="AddCategory" method="post" class="row g-3">
+    <input type="hidden" name="eventId" value="@eventId" />
+    <div class="col-md-4">
+        <input type="number" name="categoryAge" class="form-control" placeholder="Age (e.g. 18)" required />
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="categoryDistance" class="form-control" placeholder="Distance (e.g. 10KM)" required />
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-success w-100">Add Category</button>
+    </div>
+</form>

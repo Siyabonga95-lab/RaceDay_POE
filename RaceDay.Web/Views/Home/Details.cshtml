@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Event Details";
+    var ev = ViewBag.EventData;
+    var cats = ViewBag.Categories;
+}
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-danger text-white">
+            <h2>@ev.GetProperty("eventName").GetString()</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Date:</strong> @ev.GetProperty("eventDate").GetDateTime().ToString("yyyy-MM-dd")</p>
+            <p><strong>Location:</strong> @ev.GetProperty("eventLocation").GetString()</p>
+            <p><strong>Distance:</strong> @ev.GetProperty("eventDistance").GetString()</p>
+            <p><strong>Type:</strong> @ev.GetProperty("eventType").GetString()</p>
+            <p>@ev.GetProperty("eventDescription").GetString()</p>
+            <hr />
+            <h4>Available Categories</h4>
+
+            @if (Context.Session.GetString("Role") == "Participant")
+            {
+                <form asp-controller="Participant" asp-action="Enroll" method="post">
+                    <input type="hidden" name="eventId" value="@ev.GetProperty("eventID").GetInt32()" />
+                    <div class="input-group mb-3" style="max-width: 400px;">
+                        <select name="categoryId" class="form-select" required>
+                            <option value="">-- Select Category --</option>
+                            @foreach (var c in cats.EnumerateArray())
+                            {
+                                <option value="@c.GetProperty("categoryID").GetInt32()">Age: @c.GetProperty("categoryAge") - @c.GetProperty("categoryDistance")</option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-success">Enroll Now</button>
+                    </div>
+                </form>
+            }
+            else if (Context.Session.GetString("Role") == null)
+            {
+                <p class="text-muted">Please <a asp-controller="Account" asp-action="Login">login</a> as a Participant to enroll.</p>
+            }
+        </div>
+    </div>
+</div>

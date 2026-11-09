@@ -1,0 +1,23 @@
+﻿@model System.Text.Json.JsonElement
+@{
+    ViewData["Title"] = "My Results";
+}
+<h2 class="mt-4 mb-4">My Results</h2>
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr><th>Event</th><th>Date</th><th>Category</th><th>Finish Time</th><th>Position</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EnumerateArray())
+        {
+            var enrollment = item.GetProperty("enrollment");
+            <tr>
+                <td>@enrollment.GetProperty("event").GetProperty("eventName").GetString()</td>
+                <td>@enrollment.GetProperty("event").GetProperty("eventDate").GetDateTime().ToString("yyyy-MM-dd")</td>
+                <td>Age: @enrollment.GetProperty("category").GetProperty("categoryAge") - @enrollment.GetProperty("category").GetProperty("categoryDistance")</td>
+                <td>@item.GetProperty("result_finish_time").GetString()</td>
+                <td>@item.GetProperty("participant_position").GetString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

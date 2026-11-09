@@ -1,0 +1,27 @@
+﻿@model System.Text.Json.JsonElement
+@{
+    ViewData["Title"] = "Organiser Dashboard";
+}
+<div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+    <h2>My Events</h2>
+    <a asp-action="CreateEvent" class="btn btn-danger">+ Create New Event</a>
+</div>
+<table class="table table-bordered shadow-sm">
+    <thead class="table-dark">
+        <tr><th>Event Name</th><th>Date</th><th>Location</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EnumerateArray())
+        {
+            <tr>
+                <td>@item.GetProperty("eventName").GetString()</td>
+                <td>@item.GetProperty("eventDate").GetDateTime().ToString("yyyy-MM-dd")</td>
+                <td>@item.GetProperty("eventLocation").GetString()</td>
+                <td>
+                    <a asp-action="ManageCategories" asp-route-id="@item.GetProperty("eventID").GetInt32()" class="btn btn-sm btn-outline-primary">Categories</a>
+                    <!-- Add more buttons for Enrollments and Results here -->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

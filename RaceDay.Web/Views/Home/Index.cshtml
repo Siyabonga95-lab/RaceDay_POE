@@ -1,0 +1,41 @@
+﻿@model System.Text.Json.JsonElement
+@{
+    ViewData["Title"] = "Upcoming Events";
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-3">
+        <h4>Oops! Something went wrong.</h4>
+        <p>@ViewBag.Error</p>
+    </div>
+}
+
+<div class="text-center mb-5">
+    <!-- Keep the rest of your code below this -->
+    <h1 class="display-4 fw-bold text-danger">Welcome to RaceDay</h1>
+    <p class="lead">Find your next road running, walking, or cycling challenge.</p>
+</div>
+
+<div class="row">
+    @foreach (var item in Model.EnumerateArray())
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                @if (item.TryGetProperty("routeMapUrl", out var imgUrl) && !string.IsNullOrEmpty(imgUrl.GetString()))
+                {
+                    <img src="@imgUrl.GetString()" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Event Image">
+                }
+                else
+                {
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">No Image</div>
+                }
+                <div class="card-body">
+                    <h5 class="card-title text-danger">@item.GetProperty("eventName").GetString()</h5>
+                    <p class="card-text">@item.GetProperty("eventLocation").GetString() | @item.GetProperty("eventDistance").GetString()</p>
+                    <a asp-action="Details" asp-route-id="@item.GetProperty("eventID").GetInt32()" class="btn btn-outline-danger w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
