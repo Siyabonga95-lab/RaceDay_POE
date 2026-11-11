@@ -10,8 +10,8 @@ services:
       - "7092:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=tcp:racedayserver-siyabonga.database.windows.net,1433;Initial Catalog=RaceDayDB;Persist Security Info=False;User ID=racedayadmin;Password=Siyabonga@1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      - ConnectionStrings__AzureBlobStorage=DefaultEndpointsProtocol=https;AccountName=racedaystoragesiyabonga;AccountKey=GW/9iPOwGpohMfKVj+wQ4SkRN4AxrukR3ibMMYtt5uQ41zDzuQec6YAazZ0WYW7i/p6vBDDeC8Ya+ASt3oCZYg==;EndpointSuffix=core.windows.net
+      - ConnectionStrings__DefaultConnection=Server=tcp:racedayserver-siyabonga.database.windows.net,1433;Initial Catalog=RaceDayDB;Persist Security Info=False;User ID=racedayadmin;Password=YOUR_SQL_PASSWORD_HERE;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      - ConnectionStrings__AzureBlobStorage=DefaultEndpointsProtocol=https;AccountName=racedaystoragesiyabonga;AccountKey=YOUR_STORAGE_KEY_HERE==;EndpointSuffix=core.windows.net
 
   raceday_web:
     image: raceday_web
