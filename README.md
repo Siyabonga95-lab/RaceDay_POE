@@ -32,6 +32,22 @@ The application supports two distinct user roles (Organiser and Participant) wit
 *   [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
 *   Active Azure subscription (for SQL and Blob Storage).
 
+## Configuration & Setup (For Lecturer)
+To run this application securely, the sensitive Azure credentials have been removed from the source code. 
+
+Before running `docker compose up`, please replace the placeholders in `docker-compose.yml` and `RaceDay_API/appsettings.json` with the following credentials:
+
+**Azure SQL Connection String:**
+*   **Placeholder:** `YOUR_SQL_PASSWORD_HERE`
+*   **Actual Password:** `Siyabonga@1`
+
+**Azure Blob Storage Connection String:**
+*   **Placeholder:** `YOUR_STORAGE_KEY_HERE`
+*   **Actual Key:** `GW/9iPOwGpohMfKVj+wQ4SkRN4AxrukR3ibMMYtt5uQ41zDzuQec6YAazZ0WYW7i/p6vBDDeC8Ya+ASt3oCZYg==`
+
+Once the placeholders are replaced, run:
+`docker compose up --build -d`
+
 ### Installation & Setup
 
 1. **Clone the repository:**
